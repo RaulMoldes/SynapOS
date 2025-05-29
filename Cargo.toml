@@ -1,0 +1,27 @@
+[package]
+name = "synapos"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# (tus dependencias aquí)
+
+[build-dependencies]
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
+
+[features]
+default = []
+
+[workspace]
+
+
+[[bin]]
+name = "synapos"
+path = "src/main.rs"
+test = false
+doc = false
