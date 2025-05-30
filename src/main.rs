@@ -13,6 +13,7 @@ fn panic(_info: &PanicInfo) -> ! {
     loop {}
 }
 
+static HELLO: &[u8] = b"Hello World!";
 //  Defines the entry point for the program.
 // This function is called when the program starts.
 // On a typical rust binary, the entry point is something called crt0,
@@ -22,6 +23,13 @@ fn panic(_info: &PanicInfo) -> ! {
 // This disables name mangling, ensuring hthe rust compiler outputs a function with exactly the name that we declared it.
 pub extern "C" fn _start() -> ! {
 // The extern C is used to tell the compiler that it must use the C calling convention to call this function
+let vga_buffer = 0xb8000 as *mut u8;
 
+for (i, &byte) in HELLO.iter().enumerate() {
+    unsafe {
+        *vga_buffer.offset(i as isize * 2) = byte;
+        *vga_buffer.offset(i as isize * 2 + 1) = 0xb;
+    }
+}
     loop {}
 }

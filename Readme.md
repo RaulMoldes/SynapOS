@@ -27,3 +27,7 @@ cargo rustc -- -C link-args="/ENTRY:_start /SUBSYSTEM:console"
 # macOS
 cargo rustc -- -C link-args="-e __start -static -nostartfiles"
 ```
+Run on QEMU
+```bash
+sudo qemu-system-x86_64 -drive format=raw,file=/home/raulmoldes60nd/Desktop/proyectos/SynapOS/target/x86_64_synap/debug/bootimage-synapos.bin
+```
